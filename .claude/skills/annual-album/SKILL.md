@@ -62,6 +62,28 @@ mirar las extensiones presentes.
    igual está en `.gitignore` (`*.zip`) así que no se commitea por accidente.
    Ofrecer borrarlo al final si el usuario quiere liberar espacio.
 
+## Eliminar fotos existentes
+
+Cuando el usuario pida borrar una foto, la eliminación correcta siempre incluye
+las tres superficies:
+
+1. **Archivo original** en `images/<album>/<archivo>`.
+2. **Thumbnail** correspondiente en `images/<album>/thumbs/<archivo>`.
+3. **Entrada de `photos.json`** cuyo `full` y `thumb` apunten a esos archivos.
+
+No alcanza con borrar solo el JPG principal: si queda el thumbnail o la entrada
+del manifest, la galería sigue mostrando basura o rompe enlaces.
+
+Checklist mínimo:
+
+- Buscar el basename en `photos.json` antes de editar.
+- Borrar original y thumb si existen.
+- Eliminar el objeto completo de esa foto en `photos.json`.
+- Verificar con `rg -n "<basename-sin-ext>" photos.json images/<album>/`.
+
+Si el usuario pide borrar varias variantes relacionadas, revisar también sufijos
+como `-edited` y sus thumbs antes de cerrar el cambio.
+
 ## Notas
 
 - Los álbumes nuevos aparecen automáticamente en los filtros de la UI
