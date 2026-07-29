@@ -1,103 +1,116 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guille — Fotos favoritas</title>
-  <meta name="description" content="Galería de fotos favoritas." />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guille — Fotos favoritas</title>
+    <meta name="description" content="Galería de fotos favoritas." />
 
-  <!--
+    <!--
 Tooplate 2160 Exhibit Studio
 https://www.tooplate.com/view/2160-exhibit-studio
 Free HTML CSS Template
 -->
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="tooplate-exhibit-style.css" />
-</head>
-<body>
-
-  <!-- ═══════════════════════════════════════════════════════════════
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="tooplate-exhibit-style.css" />
+  </head>
+  <body>
+    <!-- ═══════════════════════════════════════════════════════════════
        NAVIGATION
        ═══════════════════════════════════════════════════════════════ -->
-  <nav class="site-nav" role="navigation" aria-label="Main">
+    <nav class="site-nav" role="navigation" aria-label="Main">
+      <div class="nav__bar">
+        <!-- ↓ EDIT: Replace with your name or studio name -->
+        <a href="index.html" class="nav__wordmark" id="js-wordmark"
+          >Exhibit <span id="js-wordmark-suffix">/ Studio</span></a
+        >
 
-    <div class="nav__bar">
+        <!-- ↓ EDIT: Desktop links (visible ≥680px) -->
+        <ul class="nav__links">
+          <li><a href="index.html" class="nav__link--active">Galeria</a></li>
+          <li><a href="about.html">Quien soy</a></li>
+          <li>
+            <a
+              href="https://www.instagram.com/libasoles/"
+              target="_blank"
+              rel="noopener"
+              >Contacto</a
+            >
+          </li>
+        </ul>
 
-      <!-- ↓ EDIT: Replace with your name or studio name -->
-      <a href="index.html" class="nav__wordmark" id="js-wordmark">Exhibit <span id="js-wordmark-suffix">/ Studio</span></a>
+        <!-- Hamburger — visible on mobile only, controlled by JS -->
+        <button
+          class="nav__hamburger"
+          id="js-hamburger"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="js-mobile-menu"
+        >
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+        </button>
+      </div>
+      <!-- /nav__bar -->
 
-      <!-- ↓ EDIT: Desktop links (visible ≥680px) -->
-      <ul class="nav__links">
+      <!-- ↓ EDIT: Mobile menu links (visible <680px, toggled by hamburger) -->
+      <ul class="nav__mobile-menu" id="js-mobile-menu" aria-hidden="true">
         <li><a href="index.html" class="nav__link--active">Galeria</a></li>
         <li><a href="about.html">Quien soy</a></li>
-        <li><a href="https://www.instagram.com/libasoles/" target="_blank" rel="noopener">Contacto</a></li>
+        <li>
+          <a
+            href="https://www.instagram.com/libasoles/"
+            target="_blank"
+            rel="noopener"
+            >Contacto</a
+          >
+        </li>
       </ul>
+    </nav>
 
-      <!-- Hamburger — visible on mobile only, controlled by JS -->
-      <button
-        class="nav__hamburger"
-        id="js-hamburger"
-        aria-label="Open menu"
-        aria-expanded="false"
-        aria-controls="js-mobile-menu"
-      >
-        <span class="nav__hamburger-line"></span>
-        <span class="nav__hamburger-line"></span>
-        <span class="nav__hamburger-line"></span>
-      </button>
-
-    </div><!-- /nav__bar -->
-
-    <!-- ↓ EDIT: Mobile menu links (visible <680px, toggled by hamburger) -->
-    <ul class="nav__mobile-menu" id="js-mobile-menu" aria-hidden="true">
-      <li><a href="index.html" class="nav__link--active">Galeria</a></li>
-      <li><a href="about.html">Quien soy</a></li>
-      <li><a href="https://www.instagram.com/libasoles/" target="_blank" rel="noopener">Contacto</a></li>
-    </ul>
-
-  </nav>
-
-
-  <!-- ═══════════════════════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════════════════
        HERO
        ═══════════════════════════════════════════════════════════════ -->
-  <header class="site-hero">
+    <header class="site-hero">
+      <!-- ↓ EDIT: Your gallery category / series name -->
+      <p class="hero__tag" id="js-hero-tag">Samsung · S23 Ultra</p>
 
-    <!-- ↓ EDIT: Your gallery category / series name -->
-    <p class="hero__tag" id="js-hero-tag">Samsung · S23 Ultra</p>
+      <!-- ↓ EDIT: Your gallery headline -->
+      <h1 class="hero__title" id="js-hero-title">
+        Rutas &amp;<br /><strong>Ciudades</strong>
+      </h1>
 
-    <!-- ↓ EDIT: Your gallery headline -->
-    <h1 class="hero__title" id="js-hero-title">
-      Ruta &amp;<br><strong>Ciudades</strong>
-    </h1>
+      <div class="hero__meta">
+        <!-- ↓ EDIT: Update the photo count to match your gallery -->
+        <span class="hero__count" id="js-photo-count">57 Fotos</span>
+        <div class="hero__rule" aria-hidden="true"></div>
+        <!-- ↓ EDIT: A one-line description of your gallery series -->
+        <p class="hero__desc" id="js-hero-desc">Argentina, Chile, Brasil</p>
+      </div>
+    </header>
 
-    <div class="hero__meta">
-      <!-- ↓ EDIT: Update the photo count to match your gallery -->
-      <span class="hero__count" id="js-photo-count">57 Fotos</span>
-      <div class="hero__rule" aria-hidden="true"></div>
-      <!-- ↓ EDIT: A one-line description of your gallery series -->
-      <p class="hero__desc" id="js-hero-desc">Argentina, Chile, Brasil</p>
-    </div>
-
-  </header>
-
-
-  <!-- ═══════════════════════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════════════════
        FILTER BAR  (optional — delete this section if not needed)
        ═══════════════════════════════════════════════════════════════ -->
-  <div class="gallery-filter-wrap">
-    <div class="gallery-filter" id="js-filter" role="toolbar" aria-label="Filter gallery">
-
-      <!-- Los botones se inyectan desde photos.json por js/gallery.js -->
-
+    <div class="gallery-filter-wrap">
+      <div
+        class="gallery-filter"
+        id="js-filter"
+        role="toolbar"
+        aria-label="Filter gallery"
+      >
+        <!-- Los botones se inyectan desde photos.json por js/gallery.js -->
+      </div>
     </div>
-  </div>
 
-
-  <!-- ═══════════════════════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════════════════
        MASONRY GALLERY
        ─────────────────────────────────────────────────────────────
        HOW TO ADD PHOTOS:
@@ -110,85 +123,121 @@ Free HTML CSS Template
        NOTE: The CSS column masonry needs images of VARYING heights
        for the best visual result. Mix portrait & landscape shots.
        ═══════════════════════════════════════════════════════════════ -->
-  <main class="gallery" id="js-gallery" aria-label="Photo gallery">
+    <main class="gallery" id="js-gallery" aria-label="Photo gallery">
+      <!-- Los items se inyectan desde photos.json por js/gallery.js -->
+    </main>
+    <!-- /GALLERY -->
 
-    <!-- Los items se inyectan desde photos.json por js/gallery.js -->
-
-  </main><!-- /GALLERY -->
-
-
-  <!-- ═══════════════════════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════════════════
        LIGHTBOX  —  "Lightroom Mode"
        This element is controlled by JavaScript below.
        You do not need to edit this HTML.
        ═══════════════════════════════════════════════════════════════ -->
-  <div class="lightbox" id="js-lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <div
+      class="lightbox"
+      id="js-lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Photo viewer"
+    >
+      <div class="lightbox__bar">
+        <span
+          class="lightbox__counter"
+          id="js-lb-counter"
+          aria-live="polite"
+        ></span>
+        <button
+          class="lightbox__close"
+          id="js-lb-close"
+          aria-label="Close photo viewer"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
 
-    <div class="lightbox__bar">
-      <span class="lightbox__counter" id="js-lb-counter" aria-live="polite"></span>
-      <button class="lightbox__close" id="js-lb-close" aria-label="Close photo viewer">
-        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 6 6 18M6 6l12 12"/>
-        </svg>
-      </button>
+      <div class="lightbox__stage">
+        <button
+          class="lightbox__nav lightbox__nav--prev"
+          id="js-lb-prev"
+          aria-label="Previous photo"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+
+        <!-- ↓ The <img> src is swapped by JS — do not edit src here -->
+        <img src="" alt="" class="lightbox__image" id="js-lb-image" />
+
+        <button
+          class="lightbox__nav lightbox__nav--next"
+          id="js-lb-next"
+          aria-label="Next photo"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="lightbox__caption">
+        <p class="lightbox__caption-title" id="js-lb-title"></p>
+        <p class="lightbox__caption-meta" id="js-lb-meta"></p>
+      </div>
     </div>
+    <!-- /LIGHTBOX -->
 
-    <div class="lightbox__stage">
-
-      <button class="lightbox__nav lightbox__nav--prev" id="js-lb-prev" aria-label="Previous photo">
-        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M15 18l-6-6 6-6"/>
-        </svg>
-      </button>
-
-      <!-- ↓ The <img> src is swapped by JS — do not edit src here -->
-      <img src="" alt="" class="lightbox__image" id="js-lb-image" />
-
-      <button class="lightbox__nav lightbox__nav--next" id="js-lb-next" aria-label="Next photo">
-        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 18l6-6-6-6"/>
-        </svg>
-      </button>
-
-    </div>
-
-    <div class="lightbox__caption">
-      <p class="lightbox__caption-title" id="js-lb-title"></p>
-      <p class="lightbox__caption-meta"  id="js-lb-meta"></p>
-    </div>
-
-  </div><!-- /LIGHTBOX -->
-
-
-  <!-- ═══════════════════════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════════════════
        FOOTER
        ═══════════════════════════════════════════════════════════════ -->
-  <footer class="site-footer">
+    <footer class="site-footer">
+      <div>
+        <!-- ↓ EDIT: Replace with your name / studio -->
+        <p class="footer__brand" id="js-footer-brand">Exhibit Studio</p>
+        <p class="footer__credit">
+          Free CSS template by
+          <a
+            href="https://www.tooplate.com/view/2160-exhibit-studio"
+            target="_blank"
+            rel="nofollow"
+            >Tooplate</a
+          >.<br />
+        </p>
+      </div>
 
-    <div>
-      <!-- ↓ EDIT: Replace with your name / studio -->
-      <p class="footer__brand" id="js-footer-brand">Exhibit Studio</p>
-      <p class="footer__credit">
-        Free CSS template by <a href="https://www.tooplate.com/view/2160-exhibit-studio" target="_blank" rel="nofollow">Tooplate</a>.<br>
-        Photos via <a href="https://picsum.photos" target="_blank" rel="noopener">Lorem Picsum</a>. Free for personal &amp; commercial use.
-      </p>
-    </div>
+      <!-- ↓ EDIT: Update links to match your site pages -->
+      <ul class="footer__nav">
+        <li><a href="index.html">Galeria</a></li>
+        <li><a href="about.html">Quien soy</a></li>
+        <li>
+          <a
+            href="https://www.instagram.com/libasoles/"
+            target="_blank"
+            rel="noopener"
+            >Contacto</a
+          >
+        </li>
+      </ul>
+    </footer>
 
-    <!-- ↓ EDIT: Update links to match your site pages -->
-    <ul class="footer__nav">
-      <li><a href="index.html">Galeria</a></li>
-      <li><a href="about.html">Quien soy</a></li>
-      <li><a href="https://www.instagram.com/libasoles/" target="_blank" rel="noopener">Contacto</a></li>
-    </ul>
-
-  </footer>
-
-
-  <!-- ═══════════════════════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════════════════
        JAVASCRIPT  —  Lightroom Mode + Filter
        You do not need to edit this block.
        ═══════════════════════════════════════════════════════════════ -->
-  <script src="js/gallery.js"></script>
-
-</body>
+    <script src="js/gallery.js"></script>
+  </body>
 </html>
