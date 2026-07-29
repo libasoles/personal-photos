@@ -2,7 +2,13 @@
 
 Galería de fotos basada en la plantilla [Exhibit Studio](https://www.tooplate.com/view/2160-exhibit-studio) (Tooplate, uso libre comercial).
 
-Estado: **prototipo**. Las 12 fotos actuales son las de la plantilla, marcadas con `"placeholder": true` en el manifest.
+**Demo:** [libasoles.github.io/personal-photos](https://libasoles.github.io/personal-photos/index.html)
+
+![Screenshot de la galería](images/screenshot.png)
+
+Estado: en uso. `photos.json` tiene 151 fotos reales agrupadas en dos álbumes (`2025`, `2026`); ya no quedan placeholders de la plantilla.
+
+Al compartir el link en WhatsApp o redes sociales, el preview usa `images/social.jpg` (configurado vía Open Graph / Twitter Card en `index.html`).
 
 ## Arrancar
 
@@ -28,7 +34,7 @@ images/<album>/               fotos de un álbum (p.ej. images/album-i/)
 
 ### Álbumes
 
-Las fotos se agrupan en álbumes: cada uno vive en su propia carpeta `images/<album-id>/` (con sus miniaturas en `images/<album-id>/thumbs/`), y `photos.json` lleva un array `albums` (`{id, label}`) más un campo `album` en cada foto que apunta a ese `id`. Hoy solo existe `album-i` ("Album I"); la UI todavía no filtra por álbum, es solo el modelo de datos.
+Las fotos se agrupan en álbumes: cada uno vive en su propia carpeta `images/<album-id>/` (con sus miniaturas en `images/<album-id>/thumbs/`), y `photos.json` lleva un array `albums` (`{id, label}`) más un campo `album` en cada foto que apunta a ese `id`. La UI filtra por álbum (los botones de `js-filter` en `js/gallery.js`); hoy existen `2025` y `2026`.
 
 ### Campos de una foto
 
@@ -64,7 +70,4 @@ Alternativa para exportes grandes: [Google Takeout](https://takeout.google.com) 
 
 ## Pendiente
 
-- Sustituir las 12 placeholder por las favoritas reales
-- Asignar categorías (ahora `build_manifest.py` mete todo en `all`)
 - `about.html` y `contact.html` siguen con el texto original de la plantilla
-- El formulario de contacto necesita un script PHP en servidor
