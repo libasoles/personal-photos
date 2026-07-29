@@ -92,18 +92,6 @@
       "alt": "Edited"
     },
     {
-      "id": "20250119_122721",
-      "category": "all",
-      "album": "2025",
-      "thumb": "images/2025/thumbs/20250119_122721.jpg",
-      "full": "images/2025/20250119_122721.jpg",
-      "width": 4000,
-      "height": 3000,
-      "title": "20250119_122721",
-      "meta": "",
-      "alt": "20250119_122721"
-    },
-    {
       "id": "20250125_202558",
       "category": "all",
       "album": "2025",
@@ -126,18 +114,6 @@
       "title": "Edited",
       "meta": "",
       "alt": "Edited"
-    },
-    {
-      "id": "20250202_143531",
-      "category": "all",
-      "album": "2025",
-      "thumb": "images/2025/thumbs/20250202_143531.jpg",
-      "full": "images/2025/20250202_143531.jpg",
-      "width": 4000,
-      "height": 3000,
-      "title": "20250202_143531",
-      "meta": "",
-      "alt": "20250202_143531"
     },
     {
       "id": "20250208_151519",
@@ -186,18 +162,6 @@
       "title": "Edited",
       "meta": "",
       "alt": "Edited"
-    },
-    {
-      "id": "20250209_151830",
-      "category": "all",
-      "album": "2025",
-      "thumb": "images/2025/thumbs/20250209_151830.jpg",
-      "full": "images/2025/20250209_151830.jpg",
-      "width": 4000,
-      "height": 3000,
-      "title": "20250209_151830",
-      "meta": "",
-      "alt": "20250209_151830"
     },
     {
       "id": "20250210_194545",
@@ -354,18 +318,6 @@
       "title": "Edited",
       "meta": "",
       "alt": "Edited"
-    },
-    {
-      "id": "20250303_145413",
-      "category": "all",
-      "album": "2025",
-      "thumb": "images/2025/thumbs/20250303_145413.jpg",
-      "full": "images/2025/20250303_145413.jpg",
-      "width": 3000,
-      "height": 4000,
-      "title": "20250303_145413",
-      "meta": "",
-      "alt": "20250303_145413"
     },
     {
       "id": "20250303_191255",
@@ -726,18 +678,6 @@
       "title": "20251028_195944",
       "meta": "",
       "alt": "20251028_195944"
-    },
-    {
-      "id": "20251029_185025-EDIT-edited",
-      "category": "all",
-      "album": "2025",
-      "thumb": "images/2025/thumbs/20251029_185025-EDIT-edited.jpg",
-      "full": "images/2025/20251029_185025-EDIT-edited.jpg",
-      "width": 3784,
-      "height": 2757,
-      "title": "Edit Edited",
-      "meta": "",
-      "alt": "Edit Edited"
     },
     {
       "id": "20251029_185025-EDIT",
