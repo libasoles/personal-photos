@@ -30,17 +30,37 @@
       .replace(/"/g, '&quot;');
   }
 
-  function renderFilters(categories) {
-    if (!filterBar || !categories || !categories.length) return;
-    filterBar.innerHTML = categories.map(function (c, i) {
-      return '<button class="filter__btn' + (i === 0 ? ' is-active' : '') +
+  function getYear(p) {
+    return String(p.id).slice(0, 4);
+  }
+
+  // Años presentes en las fotos, de más reciente a más antiguo.
+  function collectYears(photos) {
+    var set = {};
+    photos.forEach(function (p) { set[getYear(p)] = true; });
+    return Object.keys(set).sort().reverse();
+  }
+
+  // Año actual si tiene fotos; si no, el más reciente con fotos.
+  function defaultYear(years) {
+    var current = String(new Date().getFullYear());
+    return years.indexOf(current) !== -1 ? current : years[0];
+  }
+
+  function renderFilters(years, active) {
+    if (!filterBar || !years || !years.length) return;
+    var buttons = [{ id: 'all', label: 'Todas' }].concat(years.map(function (y) {
+      return { id: y, label: y };
+    }));
+    filterBar.innerHTML = buttons.map(function (c) {
+      return '<button class="filter__btn' + (c.id === active ? ' is-active' : '') +
              '" data-filter="' + esc(c.id) + '">' + esc(c.label) + '</button>';
     }).join('');
   }
 
   function renderPhoto(p) {
     return [
-      '<div class="gallery__item" data-category="' + esc(p.category) + '"',
+      '<div class="gallery__item" data-year="' + esc(getYear(p)) + '"',
       '     data-full="' + esc(p.full || p.thumb) + '"',
       '     data-title="' + esc(p.title) + '"',
       '     data-meta="' + esc(p.meta) + '">',
@@ -104,8 +124,10 @@
     })
     .then(function (data) {
       var photos = data.photos || [];
+      var years = collectYears(photos);
+      var active = defaultYear(years);
       applySiteText(data.site);
-      renderFilters(data.categories);
+      renderFilters(years, active);
       gallery.innerHTML = photos.map(renderPhoto).join('\n');
 
       var count = document.getElementById('js-photo-count');

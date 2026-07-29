@@ -58,11 +58,11 @@ Free HTML CSS Template
         const all = Array.from(gallery.querySelectorAll('.gallery__item'));
         visibleItems = filter === 'all'
           ? all
-          : all.filter(el => el.dataset.category === filter);
+          : all.filter(el => el.dataset.year === filter);
 
         /* Update the hero photo count to reflect the filter */
         if (photoCount) {
-          photoCount.textContent = visibleItems.length + ' Photograph' +
+          photoCount.textContent = visibleItems.length + ' Foto' +
             (visibleItems.length === 1 ? '' : 's');
         }
       }
@@ -168,27 +168,28 @@ Free HTML CSS Template
       const filterBar  = document.querySelector('.gallery-filter');
       const filterBtns = filterBar ? filterBar.querySelectorAll('.filter__btn') : [];
 
+      function applyFilter (filter, btn) {
+        /* Update active class */
+        filterBtns.forEach(function (b) { b.classList.remove('is-active'); });
+        if (btn) btn.classList.add('is-active');
+
+        /* Show / hide items */
+        const allItems = Array.from(gallery.querySelectorAll('.gallery__item'));
+        allItems.forEach(function (item) {
+          if (filter === 'all' || item.dataset.year === filter) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        /* Rebuild visible list for lightbox navigation */
+        buildVisibleList(filter);
+      }
+
       filterBtns.forEach(function (btn) {
         btn.addEventListener('click', function () {
-
-          /* Update active class */
-          filterBtns.forEach(function (b) { b.classList.remove('is-active'); });
-          btn.classList.add('is-active');
-
-          const filter = btn.dataset.filter || 'all';
-
-          /* Show / hide items */
-          const allItems = Array.from(gallery.querySelectorAll('.gallery__item'));
-          allItems.forEach(function (item) {
-            if (filter === 'all' || item.dataset.category === filter) {
-              item.style.display = '';
-            } else {
-              item.style.display = 'none';
-            }
-          });
-
-          /* Rebuild visible list for lightbox navigation */
-          buildVisibleList(filter);
+          applyFilter(btn.dataset.filter || 'all', btn);
         });
       });
 
@@ -199,8 +200,14 @@ Free HTML CSS Template
          cuando no existe #js-contact-form (esta plantilla no lo usa),
          lo que cortaba la ejecución antes de llegar a esta llamada y
          dejaba visibleItems vacío, rompiendo el lightbox.
+
+         El filtro activo por defecto (año actual o el más reciente
+         con fotos) ya viene marcado con "is-active" desde gallery.js,
+         así que aquí solo hay que aplicar ese mismo filtro a la vista.
          ───────────────────────────────────────────────────────────── */
-      buildVisibleList('all');
+      const initialBtn    = filterBar ? filterBar.querySelector('.filter__btn.is-active') : null;
+      const initialFilter = initialBtn ? (initialBtn.dataset.filter || 'all') : 'all';
+      applyFilter(initialFilter, initialBtn);
 
 
       /* ─────────────────────────────────────────────────────────────
