@@ -2,10 +2,10 @@
   "site": {
     "wordmark": "Guille",
     "wordmarkSuffix": "/ Fotos",
-    "heroTag": "Favoritas · Google Photos",
-    "heroTitleTop": "Light &",
-    "heroTitleBottom": "Shadow",
-    "heroDesc": "Una selección de las fotos marcadas como favoritas.",
+    "heroTag": "Samsung · S23 Ultra",
+    "heroTitleTop": "Ruta &",
+    "heroTitleBottom": "Ciudades",
+    "heroDesc": "Argentina, Chile, Brasil",
     "footerBrand": "Guille"
   },
   "categories": [
@@ -701,18 +701,6 @@
       "height": 3000,
       "title": "25 jul 2026",
       "meta": "17:13",
-      "alt": "Foto del 25 jul 2026"
-    },
-    {
-      "id": "Screenshot_20260725_142757_Photos",
-      "category": "all",
-      "album": "album-i",
-      "thumb": "images/album-i/thumbs/Screenshot_20260725_142757_Photos.jpg",
-      "full": "images/album-i/Screenshot_20260725_142757_Photos.jpg",
-      "width": 1080,
-      "height": 2316,
-      "title": "25 jul 2026",
-      "meta": "17:27",
       "alt": "Foto del 25 jul 2026"
     }
   ],
