@@ -94,8 +94,8 @@ Free HTML CSS Template
         if (!item) return;
 
         const fullSrc = item.dataset.full || item.querySelector('.gallery__image').src;
-        const title   = item.dataset.title || '';
-        const meta    = item.dataset.meta  || '';
+        const title   = item.dataset.date || item.dataset.title || '';
+        const meta    = item.dataset.location || '';
 
         /* Fade out → swap src → fade in */
         lbImage.classList.add('is-loading');
@@ -110,6 +110,7 @@ Free HTML CSS Template
 
         lbTitle.textContent   = title;
         lbMeta.textContent    = meta;
+        lbMeta.style.display  = meta ? '' : 'none';
         lbCounter.textContent = (currentIndex + 1) + ' / ' + visibleItems.length;
 
         /* Hide prev/next buttons at the ends */

@@ -34,11 +34,41 @@
     return String(p.album || p.id || '').slice(0, 4);
   }
 
-  function getPhotoDateLabel(p) {
+  function getPhotoDateParts(p) {
     var source = String(p.id || p.title || p.full || '');
     var match = source.match(/(\d{4})(\d{2})(\d{2})/);
-    if (!match) return String(p.meta || p.title || '');
-    return match[3] + '/' + match[2] + '/' + match[1];
+    if (!match) return null;
+    return {
+      year: match[1],
+      month: match[2],
+      day: match[3]
+    };
+  }
+
+  function getPhotoDateLabel(p) {
+    var parts = getPhotoDateParts(p);
+    if (!parts) return String(p.meta || p.title || '');
+    return parts.day + '/' + parts.month + '/' + parts.year;
+  }
+
+  function getPhotoModalDateLabel(p) {
+    var parts = getPhotoDateParts(p);
+    var monthNames = {
+      '01': 'ene',
+      '02': 'feb',
+      '03': 'mar',
+      '04': 'abr',
+      '05': 'may',
+      '06': 'jun',
+      '07': 'jul',
+      '08': 'ago',
+      '09': 'sep',
+      '10': 'oct',
+      '11': 'nov',
+      '12': 'dic'
+    };
+    if (!parts) return String(p.meta || p.title || '');
+    return String(parseInt(parts.day, 10)) + ' ' + (monthNames[parts.month] || parts.month) + ' ' + parts.year;
   }
 
   // Álbumes presentes en las fotos, de más reciente a más antiguo.
@@ -80,11 +110,15 @@
 
   function renderPhoto(p) {
     var dateLabel = getPhotoDateLabel(p);
+    var modalDateLabel = getPhotoModalDateLabel(p);
+    var modalLocation = p.city || p.location || p.place || '';
     return [
       '<div class="gallery__item" data-year="' + esc(getAlbumId(p)) + '"',
       '     data-full="' + esc(p.full || p.thumb) + '"',
       '     data-title="' + esc(p.title) + '"',
-      '     data-meta="' + esc(p.meta) + '">',
+      '     data-date="' + esc(modalDateLabel) + '"',
+      '     data-meta="' + esc(p.meta) + '"',
+      '     data-location="' + esc(modalLocation) + '">',
       '  <img src="' + esc(p.thumb) + '"',
       '       width="' + esc(p.width || 600) + '" height="' + esc(p.height || 400) + '"',
       '       alt="' + esc(p.alt || p.title) + '"',
