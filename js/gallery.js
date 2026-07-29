@@ -30,37 +30,50 @@
       .replace(/"/g, '&quot;');
   }
 
-  function getYear(p) {
-    return String(p.id).slice(0, 4);
+  function getAlbumId(p) {
+    return String(p.album || p.id || '').slice(0, 4);
   }
 
-  // Años presentes en las fotos, de más reciente a más antiguo.
-  function collectYears(photos) {
+  // Álbumes presentes en las fotos, de más reciente a más antiguo.
+  function collectAlbumsFromPhotos(photos) {
     var set = {};
-    photos.forEach(function (p) { set[getYear(p)] = true; });
+    photos.forEach(function (p) { set[getAlbumId(p)] = true; });
     return Object.keys(set).sort().reverse();
   }
 
-  // Año actual si tiene fotos; si no, el más reciente con fotos.
-  function defaultYear(years) {
-    var current = String(new Date().getFullYear());
-    return years.indexOf(current) !== -1 ? current : years[0];
+  function normalizeAlbums(albums, photos) {
+    if (albums && albums.length) {
+      return albums
+        .map(function (album) {
+          return {
+            id: String(album.id || '').trim(),
+            label: String(album.label || album.id || '').trim()
+          };
+        })
+        .filter(function (album) { return album.id; })
+        .sort(function (a, b) { return b.id.localeCompare(a.id); });
+    }
+
+    return collectAlbumsFromPhotos(photos).map(function (albumId) {
+      return { id: albumId, label: albumId };
+    });
   }
 
-  function renderFilters(years, active) {
-    if (!filterBar || !years || !years.length) return;
-    var buttons = [{ id: 'all', label: 'Todas' }].concat(years.map(function (y) {
-      return { id: y, label: y };
-    }));
-    filterBar.innerHTML = buttons.map(function (c) {
-      return '<button class="filter__btn' + (c.id === active ? ' is-active' : '') +
-             '" data-filter="' + esc(c.id) + '">' + esc(c.label) + '</button>';
+  function defaultAlbum(albums) {
+    return albums && albums.length ? albums[0].id : '';
+  }
+
+  function renderFilters(albums, active) {
+    if (!filterBar || !albums || !albums.length) return;
+    filterBar.innerHTML = albums.map(function (album) {
+      return '<button class="filter__btn' + (album.id === active ? ' is-active' : '') +
+             '" data-filter="' + esc(album.id) + '">' + esc(album.label) + '</button>';
     }).join('');
   }
 
   function renderPhoto(p) {
     return [
-      '<div class="gallery__item" data-year="' + esc(getYear(p)) + '"',
+      '<div class="gallery__item" data-year="' + esc(getAlbumId(p)) + '"',
       '     data-full="' + esc(p.full || p.thumb) + '"',
       '     data-title="' + esc(p.title) + '"',
       '     data-meta="' + esc(p.meta) + '">',
@@ -124,10 +137,10 @@
     })
     .then(function (data) {
       var photos = data.photos || [];
-      var years = collectYears(photos);
-      var active = defaultYear(years);
+      var albums = normalizeAlbums(data.albums, photos);
+      var active = defaultAlbum(albums);
       applySiteText(data.site);
-      renderFilters(years, active);
+      renderFilters(albums, active);
       gallery.innerHTML = photos.map(renderPhoto).join('\n');
 
       var count = document.getElementById('js-photo-count');
