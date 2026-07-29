@@ -34,6 +34,13 @@
     return String(p.album || p.id || '').slice(0, 4);
   }
 
+  function getPhotoDateLabel(p) {
+    var source = String(p.id || p.title || p.full || '');
+    var match = source.match(/(\d{4})(\d{2})(\d{2})/);
+    if (!match) return String(p.meta || p.title || '');
+    return match[3] + '/' + match[2] + '/' + match[1];
+  }
+
   // Álbumes presentes en las fotos, de más reciente a más antiguo.
   function collectAlbumsFromPhotos(photos) {
     var set = {};
@@ -72,6 +79,7 @@
   }
 
   function renderPhoto(p) {
+    var dateLabel = getPhotoDateLabel(p);
     return [
       '<div class="gallery__item" data-year="' + esc(getAlbumId(p)) + '"',
       '     data-full="' + esc(p.full || p.thumb) + '"',
@@ -82,7 +90,7 @@
       '       alt="' + esc(p.alt || p.title) + '"',
       '       class="gallery__image" loading="lazy" />',
       '  <div class="gallery__caption">',
-      '    <span class="gallery__caption-title">' + esc(p.title) + '</span>',
+      '    <span class="gallery__caption-title">' + esc(dateLabel) + '</span>',
       '    <span class="gallery__caption-meta">' + esc(p.meta) + '</span>',
       '  </div>',
       '  <div class="gallery__expand-icon" aria-hidden="true">',
