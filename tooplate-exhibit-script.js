@@ -192,7 +192,15 @@ Free HTML CSS Template
         });
       });
 
-      
+      /* ─────────────────────────────────────────────────────────────
+         INIT
+         Va aquí (y no al final del archivo) porque el bloque del
+         formulario de contacto más abajo hace un "return" temprano
+         cuando no existe #js-contact-form (esta plantilla no lo usa),
+         lo que cortaba la ejecución antes de llegar a esta llamada y
+         dejaba visibleItems vacío, rompiendo el lightbox.
+         ───────────────────────────────────────────────────────────── */
+      buildVisibleList('all');
 
 
       /* ─────────────────────────────────────────────────────────────
@@ -209,7 +217,7 @@ Free HTML CSS Template
       var successMsg = document.getElementById('js-success');
       var errorMsg   = document.getElementById('js-error');
 
-      if (!form) return;
+      if (form) {
 
       /* Helper: validate a single field */
       function validateField (input, errorEl) {
@@ -294,10 +302,6 @@ Free HTML CSS Template
         }, 1200);
       });
 
-
-      /* ─────────────────────────────────────────────────────────────
-         INIT
-         ───────────────────────────────────────────────────────────── */
-      buildVisibleList('all');
+      }
 
     })();

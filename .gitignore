@@ -9,3 +9,8 @@ image-notes.txt
 # Sistema
 .DS_Store
 Thumbs.db
+
+*.zip
+
+settings.json
+build_manifest.*

@@ -1,19 +1,27 @@
 #!/usr/bin/env python3
 """
-build_manifest.py — regenera photos.json a partir de las imágenes en images/
+build_manifest.py — regenera photos.json a partir de las imágenes de un álbum
+
+Las fotos viven en images/<album>/ (p.ej. images/album-i/) y cada álbum se
+procesa por separado; el resto de photos.json queda intacto.
 
 Uso:
-    python3 tools/build_manifest.py                 # regenera photos.json
-    python3 tools/build_manifest.py --thumbs        # además genera miniaturas
-    python3 tools/build_manifest.py --src ~/Fotos   # importa desde otra carpeta
+    python3 tools/build_manifest.py --album album-i
+    python3 tools/build_manifest.py --album album-ii --label "Album II" --thumbs
+    python3 tools/build_manifest.py --album album-ii --src ~/Fotos/viaje
 
 Qué hace:
-  - recorre images/ (o --src) buscando jpg/jpeg/png/webp
+  - recorre images/<album>/ (o --src) buscando jpg/jpeg/png/webp
   - lee ancho y alto reales de cada archivo (necesario para que el masonry
     no salte al cargar)
   - conserva title, meta y category de las fotos que ya estaban en photos.json,
-    emparejando por nombre de archivo, para no perder los textos al regenerar
-  - con --thumbs crea images/thumbs/<nombre>.jpg a 600px de ancho
+    emparejando por ruta completa, para no perder los textos al regenerar
+  - con --thumbs crea images/<album>/thumbs/<nombre>.jpg a 600px de ancho
+  - de-en la lista data["albums"] con {id, label}: si --album es nuevo se
+    agrega (con --label, o el id formateado si no se indica); si ya existía
+    y se pasa --label, actualiza la etiqueta
+  - reemplaza en photos.json solo las fotos de ese álbum; las de otros
+    álbumes no se tocan
 
 Pillow es opcional: sin él se usa un lector de cabeceras mínimo para JPEG/PNG
 y no se pueden generar miniaturas.
@@ -32,7 +40,7 @@ EXTS = {".jpg", ".jpeg", ".png", ".webp"}
 THUMB_WIDTH = 600
 
 try:
-    from PIL import Image
+    from PIL import Image, ImageOps
     HAS_PIL = True
 except ImportError:
     HAS_PIL = False
@@ -75,6 +83,7 @@ def image_size(path: Path):
     if HAS_PIL:
         try:
             with Image.open(path) as im:
+                im = ImageOps.exif_transpose(im)
                 return im.size
         except Exception:
             pass
@@ -89,6 +98,7 @@ def make_thumb(src: Path, dest_dir: Path) -> Path:
     dest_dir.mkdir(parents=True, exist_ok=True)
     dest = dest_dir / (src.stem + ".jpg")
     with Image.open(src) as im:
+        im = ImageOps.exif_transpose(im)
         im = im.convert("RGB")
         if im.width > THUMB_WIDTH:
             ratio = THUMB_WIDTH / im.width
@@ -105,32 +115,53 @@ def title_from_name(name: str) -> str:
     return stem.title() or name
 
 
+def label_from_album_id(album_id: str) -> str:
+    """album-ii -> Album Ii (fallback si no se pasa --label)"""
+    return album_id.replace("-", " ").replace("_", " ").title()
+
+
 def load_previous():
-    """Textos ya escritos a mano, indexados por nombre de archivo."""
+    """Datos existentes de photos.json, si los hay."""
     if not MANIFEST.exists():
-        return {}, {}
+        return {"site": {}, "categories": [{"id": "all", "label": "Todas"}],
+                "albums": [], "photos": []}
     data = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    by_file = {}
-    for p in data.get("photos", []):
-        by_file[Path(p.get("full") or p.get("thumb", "")).name] = p
-    return by_file, data
+    data.setdefault("albums", [])
+    data.setdefault("photos", [])
+    return data
+
+
+def upsert_album(data, album_id, label):
+    for a in data["albums"]:
+        if a["id"] == album_id:
+            if label:
+                a["label"] = label
+            return
+    data["albums"].append({"id": album_id, "label": label or label_from_album_id(album_id)})
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--src", default=str(ROOT / "images"),
-                    help="carpeta con las fotos a tamaño completo")
+    ap.add_argument("--album", required=True,
+                    help="id del álbum (p.ej. album-i); las fotos se leen de "
+                         "images/<album>/ salvo que se indique --src")
+    ap.add_argument("--label", default=None,
+                    help='nombre visible del álbum (p.ej. "Album I"); solo hace '
+                         "falta la primera vez o para renombrarlo")
+    ap.add_argument("--src", default=None,
+                    help="carpeta con las fotos a tamaño completo "
+                         "(por defecto images/<album>/)")
     ap.add_argument("--thumbs", action="store_true",
-                    help="generar miniaturas en images/thumbs/")
+                    help="generar miniaturas en images/<album>/thumbs/")
     args = ap.parse_args()
 
-    src_dir = Path(args.src).expanduser().resolve()
+    src_dir = Path(args.src).expanduser().resolve() if args.src \
+        else ROOT / "images" / args.album
     if not src_dir.is_dir():
         raise SystemExit(f"No existe la carpeta: {src_dir}")
 
-    previous, data = load_previous()
-    if not data:
-        data = {"site": {}, "categories": [{"id": "all", "label": "Todas"}], "photos": []}
+    data = load_previous()
+    previous_by_full = {p.get("full"): p for p in data["photos"]}
 
     files = sorted(
         p for p in src_dir.iterdir()
@@ -141,22 +172,25 @@ def main():
     if not files:
         raise SystemExit(f"No se encontraron imágenes en {src_dir}")
 
+    album_dir = ROOT / "images" / args.album
     photos = []
     for f in files:
         w, h = image_size(f)
-        prev = previous.get(f.name, {})
+        full_rel = f"images/{args.album}/{f.name}"
+        prev = previous_by_full.get(full_rel, {})
 
         if args.thumbs:
-            thumb_path = make_thumb(f, ROOT / "images" / "thumbs")
+            thumb_path = make_thumb(f, album_dir / "thumbs")
             thumb_rel = thumb_path.relative_to(ROOT).as_posix()
         else:
-            thumb_rel = prev.get("thumb") or f"images/{f.name}"
+            thumb_rel = prev.get("thumb") or full_rel
 
         photos.append({
             "id": f.stem,
             "category": prev.get("category", "all"),
+            "album": args.album,
             "thumb": thumb_rel,
-            "full": f"images/{f.name}",
+            "full": full_rel,
             "width": w,
             "height": h,
             "title": prev.get("title") or title_from_name(f.stem),
@@ -164,11 +198,15 @@ def main():
             "alt": prev.get("alt") or title_from_name(f.stem),
         })
 
-    data["photos"] = photos
+    upsert_album(data, args.album, args.label)
+    other_photos = [p for p in data["photos"] if p.get("album") != args.album]
+    data["photos"] = other_photos + photos
+
     MANIFEST.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n",
                         encoding="utf-8")
 
-    print(f"photos.json actualizado: {len(photos)} fotos desde {src_dir}")
+    print(f"photos.json actualizado: {len(photos)} fotos del álbum "
+          f"'{args.album}' desde {src_dir}")
     if not HAS_PIL:
         print("Aviso: sin Pillow. Dimensiones leídas de cabecera, sin miniaturas.",
               file=sys.stderr)
