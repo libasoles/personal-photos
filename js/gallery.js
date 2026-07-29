@@ -48,7 +48,7 @@
   function getPhotoDateLabel(p) {
     var parts = getPhotoDateParts(p);
     if (!parts) return String(p.meta || p.title || '');
-    return parts.day + '/' + parts.month + '/' + parts.year;
+    return String(parseInt(parts.day, 10)) + '/' + String(parseInt(parts.month, 10)) + '/' + parts.year;
   }
 
   function getPhotoModalDateLabel(p) {
