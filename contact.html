@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Exhibit Studio</title>
+  <meta name="description" content="Get in touch with Exhibit Studio." />
+
+  <!--
+Tooplate 2160 Exhibit Studio
+https://www.tooplate.com/view/2160-exhibit-studio
+Free HTML CSS Template
+-->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tooplate-exhibit-style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════════════════════════ -->
+  <nav class="site-nav" role="navigation" aria-label="Main">
+
+    <div class="nav__bar">
+      <!-- ↓ EDIT: Your studio / brand name -->
+      <a href="index.html" class="nav__wordmark">Exhibit <span>/ Studio</span></a>
+
+      <ul class="nav__links">
+        <li><a href="index.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="nav__link--active">Contact</a></li>
+      </ul>
+
+      <button
+        class="nav__hamburger"
+        id="js-hamburger"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="js-mobile-menu"
+      >
+        <span class="nav__hamburger-line"></span>
+        <span class="nav__hamburger-line"></span>
+        <span class="nav__hamburger-line"></span>
+      </button>
+    </div>
+
+    <ul class="nav__mobile-menu" id="js-mobile-menu" aria-hidden="true">
+      <li><a href="index.html">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="nav__link--active">Contact</a></li>
+    </ul>
+
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════════════════ -->
+  <header class="page-hero">
+    <p class="page-hero__tag">Get in touch</p>
+    <!-- ↓ EDIT: Your contact page headline -->
+    <h1 class="page-hero__title">Let's <strong>work together</strong></h1>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       CONTACT CONTENT
+       ═══════════════════════════════════════════════════════════════ -->
+  <main class="contact-body">
+
+    <div class="contact-grid">
+
+      <!-- ── Contact Form ──────────────────────────────────────── -->
+      <div class="contact-form-wrap">
+
+        <h2 class="contact-form__heading">Send a message</h2>
+        <!-- ↓ EDIT: Adjust the subheading to match your response time -->
+        <p class="contact-form__subheading">
+          I typically respond within two business days. For urgent editorial
+          commissions, please include a deadline in your message.
+        </p>
+
+        <!-- ↓ EDIT: To connect this form to a backend, replace the
+             action="#" with your form endpoint (Formspree, Netlify Forms, etc.)
+             The JS below handles client-side validation and a simulated submit. -->
+        <form id="js-contact-form" novalidate>
+
+          <div class="form-row">
+            <!-- Name -->
+            <div class="form-field">
+              <label class="form-label" for="field-name">
+                Name <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="field-name"
+                name="name"
+                class="form-input"
+                placeholder="Your name"
+                autocomplete="name"
+                required
+              />
+              <span class="field-error" id="err-name">Please enter your name.</span>
+            </div>
+
+            <!-- Email -->
+            <div class="form-field">
+              <label class="form-label" for="field-email">
+                Email <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="email"
+                id="field-email"
+                name="email"
+                class="form-input"
+                placeholder="your@email.com"
+                autocomplete="email"
+                required
+              />
+              <span class="field-error" id="err-email">Please enter a valid email address.</span>
+            </div>
+          </div>
+
+          <!-- Subject / enquiry type -->
+          <div class="form-field">
+            <label class="form-label" for="field-subject">Enquiry type</label>
+            <div class="form-select-wrap">
+              <select id="field-subject" name="subject" class="form-select">
+                <!-- ↓ EDIT: Update options to match your services -->
+                <option value="">Select a subject…</option>
+                <option value="editorial">Editorial assignment</option>
+                <option value="commercial">Commercial project</option>
+                <option value="fineart">Fine art print</option>
+                <option value="workshop">Workshop / talk</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="form-field">
+            <label class="form-label" for="field-message">
+              Message <span class="required" aria-hidden="true">*</span>
+            </label>
+            <textarea
+              id="field-message"
+              name="message"
+              class="form-textarea"
+              placeholder="Tell me about your project, timeline, and any other relevant details…"
+              required
+            ></textarea>
+            <span class="field-error" id="err-message">Please write a message.</span>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-submit">
+            <button type="submit" class="btn-submit" id="js-submit-btn">
+              Send message
+            </button>
+            <p class="form-note">
+              * Required fields. Your information is never shared with third parties.
+            </p>
+          </div>
+
+          <!-- Feedback messages -->
+          <div class="form-message is-success" id="js-success" role="alert">
+            ✓ &nbsp;Your message has been sent. I'll be in touch shortly.
+          </div>
+          <div class="form-message is-error" id="js-error" role="alert">
+            Something went wrong. Please email me directly at the address below.
+          </div>
+
+        </form>
+
+      </div><!-- /contact-form-wrap -->
+
+
+      <!-- ── Sidebar info ──────────────────────────────────────── -->
+      <aside class="contact-info" aria-label="Contact information">
+
+        <!-- Availability -->
+        <div class="contact-info__section">
+          <p class="contact-info__label">Availability</p>
+          <!-- ↓ EDIT: Toggle the dot to red (#e74c3c) and change text when unavailable -->
+          <div class="availability">
+            <span class="availability__dot"></span>
+            Available for new projects
+          </div>
+        </div>
+
+        <!-- Direct email -->
+        <div class="contact-info__section">
+          <p class="contact-info__label">Email</p>
+          <!-- ↓ EDIT: Replace with your email address -->
+          <a href="mailto:hello@exhibitstudio.com" class="contact-info__link">
+            hello@exhibitstudio.com
+          </a>
+        </div>
+
+        <!-- Based in -->
+        <div class="contact-info__section">
+          <p class="contact-info__label">Based in</p>
+          <!-- ↓ EDIT: Your location(s) -->
+          <p class="contact-info__value">
+            New York, USA<br>
+            Chiang Mai, Thailand
+          </p>
+        </div>
+
+        <!-- Social links -->
+        <div class="contact-info__section">
+          <p class="contact-info__label">Social</p>
+          <div class="social-links">
+
+            <!-- ↓ EDIT: Replace href values with your actual social URLs -->
+            <a href="https://instagram.com/" target="_blank" rel="noopener" class="social-link">
+              <span class="social-link__platform">Instagram</span>
+              @exhibitstudio
+            </a>
+
+            <a href="https://twitter.com/" target="_blank" rel="noopener" class="social-link">
+              <span class="social-link__platform">X / Twitter</span>
+              @exhibitstudio
+            </a>
+
+            <a href="https://linkedin.com/" target="_blank" rel="noopener" class="social-link">
+              <span class="social-link__platform">LinkedIn</span>
+              Alex Mercer
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Response time -->
+        <div class="contact-info__section">
+          <p class="contact-info__label">Response time</p>
+          <p class="contact-info__value">Within 2 business days</p>
+        </div>
+
+      </aside><!-- /contact-info -->
+
+    </div><!-- /contact-grid -->
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div>
+      <!-- ↓ EDIT: Your studio name -->
+      <p class="footer__brand">Exhibit Studio</p>
+      <p class="footer__credit">
+        Free CSS template by <a href="https://www.tooplate.com/view/2160-exhibit-studio" target="_blank" rel="nofollow">Tooplate</a>.<br>
+        Photos via <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>. Free for personal &amp; commercial use.
+      </p>
+    </div>
+    <ul class="footer__nav">
+      <li><a href="index.html">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       JAVASCRIPT — Hamburger + Form validation
+       ═══════════════════════════════════════════════════════════════ -->
+  <script src="tooplate-exhibit-script.js"></script>
+
+</body>
+</html>

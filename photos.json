@@ -1,0 +1,164 @@
+{
+  "site": {
+    "wordmark": "Guille",
+    "wordmarkSuffix": "/ Fotos",
+    "heroTag": "Favoritas · Google Photos",
+    "heroTitleTop": "Light &",
+    "heroTitleBottom": "Shadow",
+    "heroDesc": "Una selección de las fotos marcadas como favoritas.",
+    "footerBrand": "Guille"
+  },
+  "categories": [
+    { "id": "all", "label": "Todas" },
+    { "id": "portrait", "label": "Retrato" },
+    { "id": "landscape", "label": "Paisaje" },
+    { "id": "urban", "label": "Urbano" },
+    { "id": "nature", "label": "Naturaleza" }
+  ],
+  "photos": [
+    {
+      "id": "exhibit-01",
+      "category": "portrait",
+      "thumb": "images/thumb-exhibit-01.jpg",
+      "full": "images/tooplate-exhibit-01.jpg",
+      "width": 600,
+      "height": 900,
+      "title": "Golden Hour",
+      "meta": "Tuscany, Italy · 2024",
+      "alt": "A portrait captured in golden hour light",
+      "placeholder": true
+    },
+    {
+      "id": "exhibit-02",
+      "category": "landscape",
+      "thumb": "images/thumb-exhibit-02.jpg",
+      "full": "images/tooplate-exhibit-02.jpg",
+      "width": 600,
+      "height": 400,
+      "title": "Coastal Mist",
+      "meta": "Big Sur, CA · 2023",
+      "alt": "Coastal mist over a rugged shoreline",
+      "placeholder": true
+    },
+    {
+      "id": "exhibit-03",
+      "category": "urban",
+      "thumb": "images/thumb-exhibit-03.jpg",
+      "full": "images/tooplate-exhibit-03.jpg",
+      "width": 600,
+      "height": 800,
+      "title": "Steel & Glass",
+      "meta": "New York, USA · 2024",
+      "alt": "Urban architecture reflecting steel and glass",
+      "placeholder": true
+    },
+    {
+      "id": "exhibit-04",
+      "category": "nature",
+      "thumb": "images/thumb-exhibit-04.jpg",
+      "full": "images/tooplate-exhibit-04.jpg",
+      "width": 600,
+      "height": 400,
+      "title": "Forest Floor",
+      "meta": "Pacific Northwest · 2023",
+      "alt": "Detail of a mossy forest floor",
+      "placeholder": true
+    },
+    {
+      "id": "exhibit-05",
+      "category": "portrait",
+      "thumb": "images/thumb-exhibit-05.jpg",
+      "full": "images/tooplate-exhibit-05.jpg",
+      "width": 600,
+      "height": 900,
+      "title": "Sunday Window",
+      "meta": "Amsterdam · 2024",
+      "alt": "A portrait framed by a window",
+      "placeholder": true
+    },
+    {
+      "id": "exhibit-06",
+      "category": "landscape",
+      "thumb": "images/thumb-exhibit-06.jpg",
+      "full": "images/tooplate-exhibit-06.jpg",
+      "width": 600,
+      "height": 360,
+      "title": "Salt Flats at Dusk",
+      "meta": "Bonneville, Utah · 2023",
+      "alt": "Salt flats stretching to the horizon at dusk",
+      "placeholder": true
+    },
+    {
+      "id": "exhibit-07",
+      "category": "urban",
+      "thumb": "images/thumb-exhibit-07.jpg",
+      "full": "images/tooplate-exhibit-07.jpg",
+      "width": 600,
+      "height": 600,
+      "title": "Night Market",
+      "meta": "Bangkok, Thailand · 2024",
+      "alt": "A busy night market lit by string lights",
+      "placeholder": true
+    },
+    {
+      "id": "exhibit-08",
+      "category": "nature",
+      "thumb": "images/thumb-exhibit-08.jpg",
+      "full": "images/tooplate-exhibit-08.jpg",
+      "width": 600,
+      "height": 900,
+      "title": "Monsoon Season",
+      "meta": "Kerala, India · 2023",
+      "alt": "Rain falling during monsoon season",
+      "placeholder": true
+    },
+    {
+      "id": "exhibit-09",
+      "category": "portrait",
+      "thumb": "images/thumb-exhibit-09.jpg",
+      "full": "images/tooplate-exhibit-09.jpg",
+      "width": 600,
+      "height": 750,
+      "title": "The Weaver",
+      "meta": "Oaxaca, Mexico · 2024",
+      "alt": "Portrait of a weaver at work",
+      "placeholder": true
+    },
+    {
+      "id": "exhibit-10",
+      "category": "landscape",
+      "thumb": "images/thumb-exhibit-10.jpg",
+      "full": "images/tooplate-exhibit-10.jpg",
+      "width": 600,
+      "height": 400,
+      "title": "Midnight Alpine",
+      "meta": "Zermatt, Switzerland · 2023",
+      "alt": "Alpine peaks under a midnight sky",
+      "placeholder": true
+    },
+    {
+      "id": "exhibit-11",
+      "category": "urban",
+      "thumb": "images/thumb-exhibit-11.jpg",
+      "full": "images/tooplate-exhibit-11.jpg",
+      "width": 600,
+      "height": 800,
+      "title": "Pillar Light",
+      "meta": "Berlin, Germany · 2024",
+      "alt": "Light falling across concrete pillars",
+      "placeholder": true
+    },
+    {
+      "id": "exhibit-12",
+      "category": "nature",
+      "thumb": "images/thumb-exhibit-12.jpg",
+      "full": "images/tooplate-exhibit-12.jpg",
+      "width": 600,
+      "height": 400,
+      "title": "Tide Pool",
+      "meta": "Galicia, Spain · 2024",
+      "alt": "A tide pool among coastal rocks",
+      "placeholder": true
+    }
+  ]
+}

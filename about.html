@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Exhibit Studio</title>
+  <meta name="description" content="About the photographer — Exhibit Studio." />
+
+  <!--
+Tooplate 2160 Exhibit Studio
+https://www.tooplate.com/view/2160-exhibit-studio
+Free HTML CSS Template
+-->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tooplate-exhibit-style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════════════════════════ -->
+  <nav class="site-nav" role="navigation" aria-label="Main">
+
+    <div class="nav__bar">
+      <!-- ↓ EDIT: Your studio / brand name -->
+      <a href="index.html" class="nav__wordmark">Exhibit <span>/ Studio</span></a>
+
+      <ul class="nav__links">
+        <li><a href="index.html">Gallery</a></li>
+        <li><a href="about.html" class="nav__link--active">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <button
+        class="nav__hamburger"
+        id="js-hamburger"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="js-mobile-menu"
+      >
+        <span class="nav__hamburger-line"></span>
+        <span class="nav__hamburger-line"></span>
+        <span class="nav__hamburger-line"></span>
+      </button>
+    </div>
+
+    <ul class="nav__mobile-menu" id="js-mobile-menu" aria-hidden="true">
+      <li><a href="index.html">Gallery</a></li>
+      <li><a href="about.html" class="nav__link--active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════════════════ -->
+  <header class="page-hero">
+    <p class="page-hero__tag">The Photographer</p>
+    <!-- ↓ EDIT: Your name or studio tagline -->
+    <h1 class="page-hero__title">About <strong>the Work</strong></h1>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       ABOUT CONTENT
+       ═══════════════════════════════════════════════════════════════ -->
+  <main class="about-body">
+
+    <!-- ── Portrait + Bio ──────────────────────────────────────── -->
+    <div class="about-intro">
+
+      <div class="about-portrait">
+        <!-- ↓ EDIT: Replace with your portrait photo -->
+        <img
+          src="images/tooplate-about-image.jpg"
+          width="600"
+          height="800"
+          alt="Portrait of the photographer"
+          class="about-portrait__img"
+          loading="eager"
+        />
+      </div>
+
+      <div class="about-bio">
+        <p class="about-bio__label">Photographer</p>
+
+        <!-- ↓ EDIT: Your full name -->
+        <h2 class="about-bio__name"><strong>Alex</strong> Mercer</h2>
+        <!-- ↓ EDIT: Your title or specialty -->
+        <p class="about-bio__title">Documentary &amp; Fine Art Photography</p>
+
+        <div class="about-bio__divider" aria-hidden="true"></div>
+
+        <!-- ↓ EDIT: Your bio paragraphs (2–3 is ideal) -->
+        <p class="about-bio__text">
+          I am a documentary and fine art photographer based in New York, working at the
+          intersection of light, memory, and human presence. My work has been exhibited
+          across galleries in Europe, Asia, and the Americas, and published in
+          <em>National Geographic</em>, <em>TIME</em>, and <em>Aperture</em>.
+        </p>
+        <p class="about-bio__text">
+          I believe every photograph is a negotiation between the seen and the felt.
+          I work in long expeditions — months, sometimes years — building the trust
+          that allows a subject to forget the camera exists. That is the only moment
+          worth capturing.
+        </p>
+        <p class="about-bio__text">
+          I am currently based between New York and Chiang Mai, and available for
+          editorial assignments, fine art commissions, and commercial projects
+          that align with this way of working.
+        </p>
+
+        <!-- ── Approach ──────────────────────────────────────────── -->
+        <div class="about-bio__divider" aria-hidden="true"></div>
+        <p class="about-bio__label">Approach</p>
+
+        <div class="about-approach__items">
+
+          <!-- ↓ EDIT: Your working philosophy — 3 points is ideal -->
+          <div class="about-approach__item">
+            <div class="about-approach__item-number">01</div>
+            <h3 class="about-approach__item-title">Slow looking</h3>
+            <p class="about-approach__item-text">
+              I spend more time watching than shooting. The camera only appears once
+              I understand the rhythm of a place — the light at a certain hour,
+              the pattern of movement, the small rituals that repeat.
+            </p>
+          </div>
+
+          <div class="about-approach__item">
+            <div class="about-approach__item-number">02</div>
+            <h3 class="about-approach__item-title">Analogue foundation</h3>
+            <p class="about-approach__item-text">
+              All personal work is shot on medium-format film. The constraint of
+              twelve frames per roll changes how I see. The cost of each frame
+              sharpens attention in a way no digital workflow replicates.
+            </p>
+          </div>
+
+          <div class="about-approach__item">
+            <div class="about-approach__item-number">03</div>
+            <h3 class="about-approach__item-title">Minimal processing</h3>
+            <p class="about-approach__item-text">
+              I develop my own film and make my own prints. The image is complete
+              in-camera. Post-processing corrects technical failure; it does not
+              build the photograph. I prefer the restraint of the darkroom
+              to the infinite latitude of the screen.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div><!-- /about-intro -->
+
+
+    <!-- ── Stats ────────────────────────────────────────────────── -->
+    <div class="about-stats">
+
+      <!-- ↓ EDIT: Update your career stats -->
+      <div class="about-stat">
+        <div class="about-stat__number">12</div>
+        <div class="about-stat__label">Years active</div>
+      </div>
+
+      <div class="about-stat">
+        <div class="about-stat__number">600+</div>
+        <div class="about-stat__label">Projects</div>
+      </div>
+
+      <div class="about-stat">
+        <div class="about-stat__number">48</div>
+        <div class="about-stat__label">Countries</div>
+      </div>
+
+      <div class="about-stat">
+        <div class="about-stat__number">24</div>
+        <div class="about-stat__label">Exhibitions</div>
+      </div>
+
+    </div><!-- /about-stats -->
+
+
+    <!-- ── CTA ──────────────────────────────────────────────────── -->
+    <div class="about-cta">
+      <!-- ↓ EDIT: Link to your gallery and contact page -->
+      <a href="contact.html" class="btn btn--primary">Get in touch</a>
+      <a href="index.html"   class="btn btn--ghost">View gallery</a>
+    </div>
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div>
+      <!-- ↓ EDIT: Your studio name -->
+      <p class="footer__brand">Exhibit Studio</p>
+      <p class="footer__credit">
+        Free CSS template by <a href="https://www.tooplate.com/view/2160-exhibit-studio" target="_blank" rel="nofollow">Tooplate</a>.<br>
+        Photos via <a href="https://picsum.photos" target="_blank" rel="noopener">Lorem Picsum</a>. Free for personal &amp; commercial use.
+      </p>
+    </div>
+    <ul class="footer__nav">
+      <li><a href="index.html">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       JAVASCRIPT — Hamburger menu only
+       ═══════════════════════════════════════════════════════════════ -->
+  <script src="tooplate-exhibit-script.js"></script>
+
+</body>
+</html>

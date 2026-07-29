@@ -1,0 +1,11 @@
+# Plantilla original descargada
+2160_exhibit_studio.zip
+2160_exhibit_studio/
+
+# Sobras de la plantilla
+timer.html
+image-notes.txt
+
+# Sistema
+.DS_Store
+Thumbs.db
