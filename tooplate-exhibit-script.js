@@ -50,6 +50,7 @@ Free HTML CSS Template
 
       let visibleItems  = [];   // Currently visible gallery items
       let currentIndex  = 0;   // Active index in the lightbox
+      let lightboxRequestToken = 0;   // Discards stale image loads from fast navigation
 
       /* ─────────────────────────────────────────────────────────────
          BUILD VISIBLE ITEM LIST
@@ -100,10 +101,18 @@ Free HTML CSS Template
         /* Fade out → swap src → fade in */
         lbImage.classList.add('is-loading');
 
+        /* Guard against out-of-order responses when arrow keys are pressed fast */
+        const requestToken = ++lightboxRequestToken;
+
         const img = new Image();
         img.onload = function () {
+          if (requestToken !== lightboxRequestToken) return;
           lbImage.src = fullSrc;
           lbImage.alt = title;
+          lbImage.classList.remove('is-loading');
+        };
+        img.onerror = function () {
+          if (requestToken !== lightboxRequestToken) return;
           lbImage.classList.remove('is-loading');
         };
         img.src = fullSrc;
