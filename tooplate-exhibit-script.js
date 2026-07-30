@@ -169,7 +169,26 @@ Free HTML CSS Template
       const filterBar  = document.querySelector('.gallery-filter');
       const filterBtns = filterBar ? filterBar.querySelectorAll('.filter__btn') : [];
 
+      function updateFilterUrl (filter) {
+        if (!window.history || !window.history.replaceState) return;
+        const url = new URL(window.location.href);
+        if (filter && filter !== 'all') {
+          url.searchParams.set('year', filter);
+        } else {
+          url.searchParams.delete('year');
+        }
+        window.history.replaceState({ year: filter }, '', url);
+      }
+
+      function findFilterButton (filter) {
+        return Array.from(filterBtns).find(function (btn) {
+          return (btn.dataset.filter || 'all') === filter;
+        }) || null;
+      }
+
       function applyFilter (filter, btn) {
+        const normalizedFilter = btn ? (btn.dataset.filter || filter || 'all') : (filter || 'all');
+
         /* Update active class */
         filterBtns.forEach(function (b) { b.classList.remove('is-active'); });
         if (btn) btn.classList.add('is-active');
@@ -177,7 +196,7 @@ Free HTML CSS Template
         /* Show / hide items */
         const allItems = Array.from(gallery.querySelectorAll('.gallery__item'));
         allItems.forEach(function (item) {
-          if (filter === 'all' || item.dataset.year === filter) {
+          if (normalizedFilter === 'all' || item.dataset.year === normalizedFilter) {
             item.style.display = '';
           } else {
             item.style.display = 'none';
@@ -185,7 +204,8 @@ Free HTML CSS Template
         });
 
         /* Rebuild visible list for lightbox navigation */
-        buildVisibleList(filter);
+        buildVisibleList(normalizedFilter);
+        updateFilterUrl(normalizedFilter);
       }
 
       filterBtns.forEach(function (btn) {
@@ -209,6 +229,13 @@ Free HTML CSS Template
       const initialBtn    = filterBar ? filterBar.querySelector('.filter__btn.is-active') : null;
       const initialFilter = initialBtn ? (initialBtn.dataset.filter || 'all') : 'all';
       applyFilter(initialFilter, initialBtn);
+
+      window.addEventListener('popstate', function () {
+        const params = new URLSearchParams(window.location.search);
+        const requestedFilter = params.get('year') || 'all';
+        const requestedBtn = findFilterButton(requestedFilter) || initialBtn;
+        applyFilter(requestedBtn ? requestedBtn.dataset.filter || 'all' : 'all', requestedBtn);
+      });
 
 
       /* ─────────────────────────────────────────────────────────────

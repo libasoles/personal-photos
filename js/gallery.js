@@ -100,6 +100,17 @@
     return albums && albums.length ? albums[0].id : '';
   }
 
+  function getAlbumFromUrl(albums) {
+    if (!window.location || !window.location.search) return '';
+    var params = new URLSearchParams(window.location.search);
+    var requestedAlbum = String(params.get('year') || '').trim();
+    if (!requestedAlbum) return '';
+    var exists = albums.some(function (album) {
+      return album.id === requestedAlbum;
+    });
+    return exists ? requestedAlbum : '';
+  }
+
   function renderFilters(albums, active) {
     if (!filterBar || !albums || !albums.length) return;
     filterBar.innerHTML = albums.map(function (album) {
@@ -180,7 +191,7 @@
     .then(function (data) {
       var photos = data.photos || [];
       var albums = normalizeAlbums(data.albums, photos);
-      var active = defaultAlbum(albums);
+      var active = getAlbumFromUrl(albums) || defaultAlbum(albums);
       applySiteText(data.site);
       renderFilters(albums, active);
       gallery.innerHTML = photos.map(renderPhoto).join('\n');
