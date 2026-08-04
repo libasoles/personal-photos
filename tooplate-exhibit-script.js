@@ -219,7 +219,14 @@ Free HTML CSS Template
 
       filterBtns.forEach(function (btn) {
         btn.addEventListener('click', function () {
-          applyFilter(btn.dataset.filter || 'all', btn);
+          const filter = btn.dataset.filter || 'all';
+          applyFilter(filter, btn);
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'year_filter_select', {
+              year: filter,
+              filter_label: btn.textContent.trim()
+            });
+          }
         });
       });
 
